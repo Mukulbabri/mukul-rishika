@@ -1,0 +1,106 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-lg: var(--radius);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-ink: var(--ink);
+  --color-cream: var(--cream);
+  --color-sage: var(--sage);
+  --color-sage-deep: var(--sage-deep);
+  --color-sage-soft: var(--sage-soft);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-rose: var(--rose);
+  --color-rose-deep: var(--rose-deep);
+  --color-maroon: var(--maroon);
+  --font-script: var(--font-script);
+  --font-display: var(--font-display);
+  --font-serif: var(--font-serif);
+  --font-cinzel: var(--font-cinzel);
+}
+
+@keyframes fade {
+  from { opacity: 0.7; }
+  to { opacity: 1; }
+}
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.97 0.02 90);
+  --foreground: oklch(0.25 0.03 30);
+  --ink: 25 30% 18%;
+  --cream: oklch(0.97 0.02 90);
+  --sage: oklch(0.86 0.05 130);
+  --sage-soft: oklch(0.9 0.04 130);
+  --sage-deep: oklch(0.38 0.06 145);
+  --gold: oklch(0.78 0.12 80);
+  --gold-deep: oklch(0.62 0.13 65);
+  --rose: oklch(0.65 0.18 18);
+  --rose-deep: oklch(0.5 0.18 18);
+  --maroon: oklch(0.27 0.05 40);
+  --font-script: "Great Vibes", "Allura", cursive;
+  --font-display: "Cormorant Garamond", "Playfair Display", serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-cinzel: "Cinzel", serif;
+}
+
+@layer base {
+  * { border-color: oklch(0.9 0.02 90); }
+  html, body { background-color: var(--cream); color: var(--foreground); }
+  body { font-family: var(--font-serif); }
+}
+
+/* Gradients & shadows */
+.gradient-gold { background: linear-gradient(135deg, oklch(0.85 0.13 85), oklch(0.62 0.13 65)); }
+.shadow-gold { box-shadow: 0 10px 30px -10px oklch(0.62 0.13 65 / 0.55); }
+
+/* Petal float */
+@keyframes float-petal {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+.animate-float-petal { animation: float-petal linear infinite; }
+
+@keyframes drift {
+  0%,100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-10px) rotate(8deg); }
+}
+.animate-drift { animation: drift 6s ease-in-out infinite; }
+
+@keyframes shimmer {
+  0%,100% { box-shadow: 0 0 20px oklch(0.78 0.12 80 / 0.5); }
+  50% { box-shadow: 0 0 35px oklch(0.78 0.12 80 / 0.9); }
+}
+.animate-shimmer { animation: shimmer 2.5s ease-in-out infinite; }
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fade-up 0.9s ease-out both; }
+.delay-300 { animation-delay: .3s; }
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.animate-fade-in { animation: fade-in 1s ease-out both; }
+
+/* Section reveal on scroll */
+.reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* Falling confetti envelope shapes */
+@keyframes envelope-fall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  10%{ opacity: 0.7; }
+  100%{ transform: translateY(110vh) rotate(360deg); opacity: 0.5; }
+}
+.animate-env-fall { animation: envelope-fall linear infinite; }
+
